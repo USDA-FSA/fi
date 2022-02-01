@@ -46,9 +46,33 @@ export function useUtilities() {
     return (' ' + elem.className + ' ').indexOf(' ' + classname + ' ') > -1;
   }
 
+  const removeDuplicates = (_arr, _key) => {
+    return [...new Map(_arr.map(v => [v[_key], v])).values()]
+  };
+
+  const getPropertyFromId = (_id, _key, _arr) => {
+    let tab = _arr.find(item => item.id == _id);
+    return tab[ _key ];
+  }
+
+  const setPropertyFromId = (_id, _key, _val, _arr) => {
+    let tab = _arr.find(item => item.id == _id);
+    if(tab[ _key ]) tab[ _key ] = _val;
+  }
+
+  const setPropertyFromProperty = (_val, _prop, _prop2, _val2, _arr) => {
+    let derp = _arr.find(item => item[_prop] == _val );
+    derp[ _prop2 ] = _val2;
+  }
+
+
   return {
     getClosest,
     getAnimationString,
-    hasClass
+    hasClass,
+    removeDuplicates,
+    getPropertyFromId,
+    setPropertyFromId,
+    setPropertyFromProperty
   }
 }

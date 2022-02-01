@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <footerTopper></footerTopper>
+    <footerTopper :HIDE_RETURN_TO_TOP="HIDE_RETURN_TO_TOP" ></footerTopper>
     <footerFooter 
       APP_ABBR_NAME="FI">
     </footerFooter>
@@ -22,6 +22,9 @@ import footerScreenId from '@/components/footer/footer-screen-id.vue';
 import hiddenItems from '@/components/hidden/hidden-items.vue';
 
 export default {
+  props: {
+    HIDE_RETURN_TO_TOP: String
+  },
   setup(){
 
   },
