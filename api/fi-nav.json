@@ -33,13 +33,13 @@
         {
           "uid": "demo-dashboard-example-id",
           "label": "Dashboard Example",
-          "path": "/demos/dashboard-example",
+          "path": "/demos/search/dashboard",
           "hasChild": "false"
         },
         {
           "uid": "demo-select-rep-example-id",
           "label": "Select Rep Example",
-          "path": "/demos/select-rep-example",
+          "path": "/demos/search/select-rep-example",
           "hasChild": "false"
         }
       ]
