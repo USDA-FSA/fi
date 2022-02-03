@@ -8,16 +8,31 @@ export const demosRoutes = [
   {
     path: '/demos/search/scims',
     component: () => import('@/views/demos/search/Scims.vue'),
-    props: true
   },
   {
     path: '/demos/search/select-rep-example',
     component: () => import('@/views/demos/search/SelectRep.vue'),
-    props: true
   },
   {
     path: '/demos/search/customer-summary',
     component: () => import('@/views/demos/search/Customer-Summary.vue'),
+  },
+  {
+    path: '/demos/search/payment-results',
+    component: () => import('@/views/demos/search/Payment-Search-Results.vue'),
+  },
+  {
+    path: '/demos/search/irs-forms-results',
+    component: () => import('@/views/demos/search/Irs-Forms-Search-Results.vue'),
+  },
+  {
+    path: '/demos/search/payment-details/:id',
+    component: () => import('@/views/demos/search/Payment-Details.vue'),
+    props: true
+  },
+  {
+    path: '/demos/search/irs-forms-details/:id',
+    component: () => import('@/views/demos/search/Irs-Forms-Details.vue'),
     props: true
   },
   

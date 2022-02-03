@@ -36,7 +36,7 @@
                       Search
                   </button> 
                   
-                  <button @click="viewAll('payments')" class="fsa-btn fsa-btn--secondary fsa-btn--small">
+                  <button @click="viewAll(tabPaymentsId)" class="fsa-btn fsa-btn--secondary fsa-btn--small">
                     <svg class="fsa-icon fsa-icon--size-1" aria-hidden="true" focusable="false" role="img" fill="#494440" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"></path></svg>
                     View All
                   </button>
@@ -55,7 +55,7 @@
               </thead>
               <tbody v-if="paymentsData">
                 <tr v-for="payment in paymentsData" v-bind:key="payment.id">
-                  <td>{{ payment.payment_date }}</td>
+                  <td><a @click.prevent="showPaymentDetails(payment.id)" href="#">{{ payment.payment_date }}</a></td>
                   <td>{{ payment.ach_check_num }}</td>
                   <td>{{ payment.gross_benefit }}</td>
                   <td>{{ payment.net_payment }}</td>
@@ -78,7 +78,7 @@
                   
                   </button> 
                   
-                  <button @click="viewAll('collections')" class="fsa-btn fsa-btn--secondary fsa-btn--small">
+                  <button @click="viewAll(tabCollectionsId)" class="fsa-btn fsa-btn--secondary fsa-btn--small">
                     <svg class="fsa-icon fsa-icon--size-1" aria-hidden="true" focusable="false" role="img" fill="#494440" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"></path></svg>
                     View All
                   </button>
@@ -117,7 +117,7 @@
                   
                   </button> 
                   
-                  <button @click="viewAll('collections')" class="fsa-btn fsa-btn--secondary fsa-btn--small">
+                  <button @click="viewAll(tabDebtsId)" class="fsa-btn fsa-btn--secondary fsa-btn--small">
                     <svg class="fsa-icon fsa-icon--size-1" aria-hidden="true" focusable="false" role="img" fill="#494440" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"></path></svg>
                     View All
                   </button>
@@ -156,7 +156,7 @@
                   
                   </button> 
                   
-                  <button @click="viewAll('irsForms')" class="fsa-btn fsa-btn--secondary fsa-btn--small">
+                  <button @click="viewAll(tabIrsFormsId)" class="fsa-btn fsa-btn--secondary fsa-btn--small">
                     <svg class="fsa-icon fsa-icon--size-1" aria-hidden="true" focusable="false" role="img" fill="#494440" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"></path></svg>
                     View All
                   </button>
@@ -214,18 +214,34 @@
           <ul class="fsa-form-list" aria-describedby="unique-id-lorem--help--1234" aria-labelledby="unique-id-lorem--1234">
             <li>
               <span>
-                <input class="fsa-checkbox" id="apple" type="checkbox" name="pie" checked="">
+                <input class="fsa-checkbox" id="apple" type="checkbox" name="program1" checked="">
                 <label for="apple">Agricultural Risk Coverage Prog - County Loan Deficiency - Wheat</label>
               </span>
             </li>
             <li>
               <span>
-                <input class="fsa-checkbox" id="key-lime" type="checkbox" name="pie">
+                <input class="fsa-checkbox" id="key-lime" type="checkbox" name="program1">
                 <label for="key-lime">Some Other Program Name That Too Long</label>
               </span>
             </li>
           </ul>
           <span class="fsa-field__help" id="unique-id-lorem--help--1234">Select Multiple Programs if needed</span>
+        </div>
+        <div class="fsa-field fsa-m-t--m fsa-field--fill">
+          <label class="fsa-field__label" for="UNIQUE-ID-hshhsjtext">Program</label>
+          <div class="fsa-select-multi fsa-field__item">
+            <ul class="fsa-select-multi__list" id="UNIQUE-ID-hshhsjtext" aria-describedby="lorem-hshhsjtext-help-4">
+              <li class="fsa-select-multi__item">
+                <input class="fsa-checkbox fsa-select-multi__check" id="default-loskss4ga_one" type="checkbox" name="default-loskss4ga_one" value="One" checked="">
+                <label class="fsa-select-multi__label" for="default-loskss4ga_one">Agricultural Risk Coverage Prog - County Loan Deficiency - Wheat</label>
+              </li>
+              <li class="fsa-select-multi__item">
+                <input class="fsa-checkbox fsa-select-multi__check" id="default-loskss4ga_two" type="checkbox" name="default-loskss4ga_two" value="Two">
+                <label class="fsa-select-multi__label" for="default-loskss4ga_two">Some Other Program Name That Too Long</label>
+              </li>
+            </ul>
+          </div>
+          <span class="fsa-field__help" id="lorem-hshhsjtext-help-4">Instructional message here</span>
         </div>
         <div class="fsa-m-t--m">
           Gross Benefit Amount Range
@@ -283,7 +299,7 @@
           <span class="fsa-field__help" id="ach-id-id-help-2"></span>
         </div>
         <div class="fsa-m-t--m">
-          <button @click="hideModal(tabPaymentsId+'-modal')" class="fsa-btn fsa-btn--primary">
+          <button @click="handleViewResults(tabPaymentsId)" class="fsa-btn fsa-btn--primary">
             <svg class="fsa-icon fsa-icon--size-1" aria-hidden="true" focusable="false" role="img" fill="#494440" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
             Search
           </button>
@@ -306,7 +322,105 @@
 
       <!-- IRS Forms Modal START -->
       <demo-modal :MODAL_ID="tabIrsFormsId+'-modal'" MODAL_CLASS="" MODAL_TITLE="IRS Forms Modal Title">
-        <p>IRS Forms content goes here</p>
+        <span class="fsa-m-t--l">Date Range of Indebtedness:</span>
+        <div class="fsa-level fsa-m-t--xs">
+          <span>
+            <div class="fsa-field fsa-field--fill">
+              <label class="fsa-field__label" for="date-picker-basic">Start Date</label>
+              <input placeholder="mm/dd/yyyy" class="fsa-input fsa-field__item" id="date-picker-1" aria-describedby="date-picker-basic__help" aria-required="true" name="date-picker-basic" type="text" value="">
+              <span class="fsa-field__help" id="date-picker-basic__help">Use format: mm/dd/yyyy</span>
+            </div>
+          </span>
+          <span>
+            <div class="fsa-field">
+              <label class="fsa-field__label" for="date-picker-basic">End Date</label>
+              <input placeholder="mm/dd/yyyy" class="fsa-input fsa-field__item" id="date-picker-2" aria-describedby="date-picker-basic__help" aria-required="true" name="date-picker-basic" type="text" value="">
+              <span class="fsa-field__help" id="date-picker-basic__help">Use format: mm/dd/yyyy</span>
+            </div>
+          </span>
+        </div>
+        <div class="fsa-field fsa-m-t--m fsa-field--fill">
+          <label class="fsa-field__label" for="UNIQUE-ID-hshhsjtext">Program</label>
+          <div class="fsa-select-multi fsa-field__item">
+            <ul class="fsa-select-multi__list" id="UNIQUE-ID-hshhsjtext" aria-describedby="lorem-hshhsjtext-help-4">
+              <li class="fsa-select-multi__item">
+                <input class="fsa-checkbox fsa-select-multi__check" id="irsforms_one" type="checkbox" name="irsforms_one" value="One" checked="">
+                <label class="fsa-select-multi__label" for="irsforms_one">CROPS DISASTER PROGRAM</label>
+              </li>
+              <li class="fsa-select-multi__item">
+                <input class="fsa-checkbox fsa-select-multi__check" id="irsforms_two" type="checkbox" name="irsforms_two" value="Two">
+                <label class="fsa-select-multi__label" for="irsforms_two">DCP - COUNTER CYCLICAL</label>
+              </li>
+              <li class="fsa-select-multi__item">
+                <input class="fsa-checkbox fsa-select-multi__check" id="irsforms_three" type="checkbox" name="irsforms_three" value="Three">
+                <label class="fsa-select-multi__label" for="irsforms_three">DCP - DIRECT</label>
+              </li>
+              <li class="fsa-select-multi__item">
+                <input class="fsa-checkbox fsa-select-multi__check" id="irsforms_four" type="checkbox" name="_four" value="Four">
+                <label class="fsa-select-multi__label" for="irsforms_four">DIRECT PAYMENT - CORN</label>
+              </li>
+            </ul>
+          </div>
+          <span class="fsa-field__help" id="lorem-hshhsjtext-help-4">Instructional message here</span>
+        </div>
+
+        <div class="fsa-m-t--m">
+          Original Principal Amount Range
+        </div>
+        <div class="fsa-level fsa-m-t--none">
+          <span>
+            <div class="fsa-field fsa-field--fill">
+              <label class="fsa-field__label" for="date-picker-basic">Minimum</label>
+              <span class="fsa-affix fsa-affix--fill">
+                <label for="lorem-778affixs459" class="fsa-affix__prefix" aria-hidden="true" title="Dollars">$</label>
+                <input placeholder="" class="fsa-input fsa-field__item fsa-affix__item" id="" aria-describedby="date-picker-basic__help" aria-required="true" name="date-picker-basic" type="text" value="">
+              </span>
+              <span class="fsa-field__help" id="date-picker-basic__help"></span>
+            </div>
+          </span>
+          <span>
+            <div class="fsa-field">
+              <label class="fsa-field__label" for="date-picker-basic">Maximum</label>
+              <span class="fsa-affix fsa-affix--fill">
+                <label for="lorem-778affixs459" class="fsa-affix__prefix" aria-hidden="true" title="Dollars">$</label>
+                <input placeholder="" class="fsa-input fsa-field__item fsa-affix__item" id="" aria-describedby="date-picker-basic__help" aria-required="true" name="date-picker-basic" type="text" value="">
+              </span>
+              <span class="fsa-field__help" id="date-picker-basic__help"></span>
+            </div>
+          </span>
+        </div>
+
+        <div class="fsa-field">
+          <label class="fsa-field__label" for="UNIQdsfsdfsD-hshhsjtex">State <span class="fsa-field__label-desc">Required</span></label>
+          <select class="fsa-select fsa-field__item" id="UNIQdsfsdfsD-hshhsjtext" aria-describedby="lorem-hshhsjtext-help-4" aria-required="true" name="UNIQdsfsdfsD-hshhsjtex">
+            <option value="Option A" selected="selected">State Name</option>
+            <option value="Option B">State Name</option>
+            <option value="Option C">State Name</option>
+            <option value="Option D">State Name</option>
+            <option value="Option E">State Name</option>
+          </select>
+          <span class="fsa-field__help" id="lorem-hshhsjtext-help-4"></span>
+        </div>
+
+        <div class="fsa-field">
+          <label class="fsa-field__label" for="UNIQUE-ID-hshhsjtext">County <span class="fsa-field__label-desc">Required</span></label>
+          <select class="fsa-select fsa-field__item" id="UNIQUE-ID-hshhsjteCounty" aria-describedby="UNIQUE-ID-hshhsjteCounty-help-4" aria-required="true" name="UNIQUE-ID-hshhsjteCounty">
+            <option value="Option A" selected="selected">County Name</option>
+            <option value="Option B">County Name</option>
+            <option value="Option C">County Name</option>
+            <option value="Option D">County Name</option>
+            <option value="Option E">County Name</option>
+          </select>
+          <span class="fsa-field__help" id="lorem-hshhsjtext-help-4"></span>
+        </div>
+
+        <div class="fsa-m-t--m">
+          <button @click="handleViewResults(tabIrsFormsId)" class="fsa-btn fsa-btn--primary">
+            <svg class="fsa-icon fsa-icon--size-1" aria-hidden="true" focusable="false" role="img" fill="#494440" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
+            Search
+          </button>
+        </div>
+
       </demo-modal>
       <!-- IRS Forms Modal END -->
 
@@ -358,22 +472,26 @@ export default {
       {
         id: tabPaymentsId.value,
         label: 'Payments',
-        isSelected: true
+        isSelected: true,
+        path: '/demos/search/payment-results'
       },
       {
         id: tabCollectionsId.value,
         label: 'Collections',
-        isSelected: false
+        isSelected: false,
+        path: '/demos/search/collections-results'
       },
       {
         id: tabDebtsId.value,
         label: 'Debts',
-        isSelected: false
+        isSelected: false,
+        path: '/demos/search/debts-results'
       },
       {
         id: tabIrsFormsId.value,
         label: 'IRS Forms',
-        isSelected: false
+        isSelected: false,
+        path: '/demos/search/irs-forms-results'
       },
 
     ])
@@ -502,6 +620,19 @@ export default {
 
     const modalDatePickerId = ref(uuidv4());
 
+    const handleViewResults = (_id=null) => {
+      if(_id) hideModal(_id+'-modal');
+      goto( getPropertyFromId(_id, 'path', tabsData.value) );  
+    }
+
+    const viewAll = (_id=null) => {
+      goto( getPropertyFromId(_id, 'path', tabsData.value) ); 
+    }
+
+    const showPaymentDetails = (_id) => {
+      goto('demos/search/payment-details/'+_id)
+    }
+
     return {
       goto,
       tabsData,
@@ -510,12 +641,15 @@ export default {
       tabDebtsId,
       tabIrsFormsId,
       paymentsData,
+      showPaymentDetails,
       collectionsData,
       debtsData,
       irsFormsData,
       setIsSelectedContainer,
       setSelectedClass,
       handleTabSelect,
+      handleViewResults,
+      viewAll,
       showModal,
       hideModal,
       modalDatePickerId
