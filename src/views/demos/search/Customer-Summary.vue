@@ -657,13 +657,4 @@ export default {
   }
 }
 
-
-datePickerController.createDatePicker({
-  // Associate the text input to a DD/MM/YYYY date format
-  formElements: { 'date-picker-1' : "%m/%d/%Y" }
-});
-datePickerController.createDatePicker({
-  // Associate the text input to a DD/MM/YYYY date format
-  formElements: { 'date-picker-2' : "%m/%d/%Y" }
-});
 </script>
